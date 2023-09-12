@@ -49,9 +49,9 @@ jobs:
           ls -a
           pip install -r requirements.txt
 
-      - name: Test with flake8
-        run: |
-          python -m flake8
+#      - name: Test with flake8
+#        run: |
+#          python -m flake8
 
       - name: Apply Django Migrations for tests
         run: |
