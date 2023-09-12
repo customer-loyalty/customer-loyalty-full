@@ -79,7 +79,7 @@ jobs:
 
 
       - name: Pull & update submodules recursively
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
         run: |
           git submodule update --init --recursive
           git submodule update --recursive --remote
