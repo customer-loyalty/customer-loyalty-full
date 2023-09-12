@@ -11,7 +11,7 @@ services:
     container_name: db
 
   backend:
-    image: carlodipalma/decks-backend:latest
+    image: carlodipalma/loyalty-backend:latest
     volumes:
       - static_value:/app/static/
     depends_on:
@@ -22,7 +22,7 @@ services:
     container_name: backend
 
   frontend:
-    image: carlodipalma/decks-frontend:latest
+    image: carlodipalma/loyalty-frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
@@ -30,7 +30,7 @@ services:
     container_name: frontend
 
   nginx:
-    image: carlodipalma/foodgram_gateway:latest
+    image: carlodipalma/loyalty-nginx:latest
     ports:
       - "80:80"
     volumes:
