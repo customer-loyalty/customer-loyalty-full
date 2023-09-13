@@ -27,14 +27,14 @@ jobs:
       DATABASE_URL: >
         postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}
         @185.41.161.178:5432/${{ secrets.DB_NAME }}
-#
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Set up Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: 3.9
-#
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
 #      - uses: actions/checkout@v3
 #      - name: Pull & update submodules recursively
 #        run: |
