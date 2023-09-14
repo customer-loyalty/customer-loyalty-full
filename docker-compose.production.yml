@@ -1,5 +1,9 @@
 version: '3.8'
 
+volumes:
+  postgres_data:
+  static_value:
+
 services:
 
   database:
@@ -30,17 +34,13 @@ services:
     container_name: frontend
 
   nginx:
+    container_name: nginx
     image: carlodipalma/loyalty-nginx:latest
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ../frontend/dist:/usr/share/nginx/html/:rw
       - static_value:/var/html/static/
     depends_on:
+      - backend
       - frontend
-    container_name: nginx
 
-volumes:
-  postgres_data:
-  static_value:
