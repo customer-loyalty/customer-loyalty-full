@@ -37,7 +37,7 @@ services:
     container_name: nginx
     image: carlodipalma/loyalty-nginx:latest
     ports:
-      - "8000:80"
+      - 8000:80
     volumes:
       - static_value:/var/html/static/
     depends_on:
