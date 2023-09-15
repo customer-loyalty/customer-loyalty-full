@@ -17,7 +17,7 @@ jobs:
         with:
           host: 185.41.161.178
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_NEW_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "docker-compose.production.yml"
           target: "/"
