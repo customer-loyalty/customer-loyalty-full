@@ -131,7 +131,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker compose down -v
+            sudo docker compose down
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/loyalty-backend:latest
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/loyalty-frontend:latest
             rm .env
