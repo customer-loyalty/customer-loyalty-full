@@ -1,0 +1,23 @@
+name: Loyalty workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+
+  deploy:
+    name: Deploy on a production server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Copy docker-compose.production.yml via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: 185.41.161.178
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: "docker-compose.production.yml"
+          target: "/"
