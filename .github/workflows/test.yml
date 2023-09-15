@@ -1,4 +1,4 @@
-name: Loyalty workflow
+name: Test workflow
 
 on:
   workflow_dispatch
