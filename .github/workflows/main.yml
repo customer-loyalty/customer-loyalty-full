@@ -132,7 +132,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             sudo docker compose down -v
-            sudo docker system prune --all --volumes
+#            sudo docker system prune --all --volumes
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/loyalty-backend:latest
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/loyalty-frontend:latest
             rm .env
