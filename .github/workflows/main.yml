@@ -124,7 +124,7 @@ jobs:
 
     steps:
       - name: Executing remote ssh commands to deploy
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         with:
           host: 185.41.161.178
           username: ${{ secrets.USER }}
