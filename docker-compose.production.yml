@@ -28,9 +28,9 @@ services:
   frontend:
     container_name: frontend
     image: carlodipalma/loyalty-frontend:latest
-    command: cp -r /app/build/. /static/
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/app/result_build/
+      - static:/frontend_static
     depends_on:
       - backend
 
