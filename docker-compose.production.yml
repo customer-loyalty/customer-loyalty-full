@@ -26,12 +26,14 @@ services:
     container_name: backend
 
   frontend:
+    container_name: frontend
     image: carlodipalma/loyalty-frontend:latest
+    command: cp -r /app/build/. /static/
     volumes:
       - static:/app/result_build/
     depends_on:
       - backend
-    container_name: frontend
+
 
   nginx:
     container_name: nginx
