@@ -7,14 +7,16 @@ volumes:
 services:
 
   database:
-    image: postgres:13.0
+    container_name: database
+    image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
-    container_name: database
+
 
   backend:
+    container_name: backend
     image: carlodipalma/loyalty-backend:latest
     volumes:
       - static:/backend_static
@@ -23,7 +25,7 @@ services:
     env_file:
       - .env
     restart: always
-    container_name: backend
+
 
   frontend:
     container_name: frontend
