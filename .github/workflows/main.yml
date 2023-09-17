@@ -1,4 +1,4 @@
-name: Loyalty workflow
+name: Main Loyalty workflow
 
 on:
   workflow_dispatch
