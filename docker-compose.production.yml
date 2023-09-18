@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 volumes:
   postgres_data:
@@ -7,30 +7,29 @@ volumes:
 services:
 
   database:
-    image: postgres:13.0
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - .env
     container_name: database
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: .env
 
   backend:
+    container_name: backend
     image: carlodipalma/loyalty-backend:latest
     volumes:
       - static:/backend_static
     depends_on:
       - database
-    env_file:
-      - .env
+    env_file: .env
     restart: always
-    container_name: backend
+
 
   frontend:
     container_name: frontend
     image: carlodipalma/loyalty-frontend:latest
-    command: cp -r /app/build/. /static/
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/app/result_build/
+      - static:/frontend_static
     depends_on:
       - backend
 
