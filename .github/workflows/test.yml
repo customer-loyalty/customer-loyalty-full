@@ -44,8 +44,7 @@ jobs:
         POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         POSTGRES_DB: ${{ secrets.DB_NAME }}
         DB_TYPE: postgres
-        DB_HOST: 127.0.0.1
-#        DB_HOST: database
+        DB_HOST: database
         DB_PORT: 5432
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: ${{ secrets.DEBUG }}
@@ -142,7 +141,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/loyalty-frontend:latest
 
   build_nginx_and_push_to_docker_hub:
-    name: Push nginx Docker image to DockerHub
+    name: Push Nginx image to DockerHub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -188,7 +187,7 @@ jobs:
             echo "POSTGRES_DB=${{ secrets.DB_NAME }}" >> .env
             echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
             echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-            echo "DB_HOST=127.0.0.1" >> .env
+            echo "DB_HOST=database" >> .env
             echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
             echo "SECRET_KEY='${{ secrets.SECRET_KEY }}'" >> .env
             echo "DEBUG=${{ secrets.DEBUG }}" >> .env
