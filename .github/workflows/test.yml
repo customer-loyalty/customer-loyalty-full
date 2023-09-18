@@ -91,10 +91,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
       - name: Login to Docker
         uses: docker/login-action@v1
         with:
@@ -113,6 +111,33 @@ jobs:
           context: backend/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/loyalty-backend:latest
+
+#      - name: Push frontend to Docker Hub
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: frontend/
+#          push: true
+#          tags: ${{ secrets.DOCKER_USERNAME }}/loyalty-frontend:latest
+
+  build_frontend_and_push_to_docker_hub:
+    name: Push frontend image to DockerHub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: actions/checkout@v3
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
 
       - name: Push frontend to Docker Hub
         uses: docker/build-push-action@v2
@@ -147,6 +172,7 @@ jobs:
     needs:
       - build_and_push_to_docker_hub
       - build_nginx_and_push_to_docker_hub
+      - build_frontend_and_push_to_docker_hub
 
     steps:
       - name: Executing remote ssh commands to deploy
